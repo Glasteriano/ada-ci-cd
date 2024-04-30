@@ -36,8 +36,6 @@ jobs:
         run: |
           echo "Preparando implantação..."
           mvn clean
-          mvn package
-          cp target/*.war build-artifacts/
 
       - name: Deploy to server
         if: ${{ env.DEPLOY_ENABLED == 'false' }}
