@@ -13,7 +13,7 @@ jobs:
 
       - name: Definir variável de ambiente MAVEN_OPTS
         run: |
-          pwd
+          ls -a
           echo "MAVEN_OPTS=-Dmaven.project.basedir=pom.xml" >> $GITHUB_ENV
 
       - name: Setup Java
@@ -40,7 +40,6 @@ jobs:
       - name: Prepare deployment
         run: |
           echo "Preparando implantação..."
-          pwd
           mvn clean
           mvn package -P production
           cp target/*.war build-artifacts/
