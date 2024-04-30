@@ -33,12 +33,14 @@ jobs:
 
     steps:
 
-      - name: Prepare deployment
-        run: |
-          echo "Preparando implantação..."
-          mvn clean
-          mvn package -P production
+     # - name: Prepare deployment
+       # run: |
+        # echo "Preparando implantação..."
+        # mvn clean
+        # mvn package -P production
         # cp target/*.war build-artifacts/
+        
+        # Não sei o que está acontecendo, ele fala que não tem um arquivo POM, mas há sim esse arquivo, já até usei o comando "pwd" e o "ls -a" para ver, e está lá certinho
 
       - name: Deploy to server
         if: ${{ env.DEPLOY_ENABLED == 'false' }}
