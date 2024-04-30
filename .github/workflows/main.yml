@@ -17,10 +17,8 @@ jobs:
           java-version: 21
           distribution: 'adopt'
 
-      - name: Install Maven
-        uses: actions/setup-maven@v3
-        with:
-          maven-version: '3.8.5'
+      - name: Setup Maven Action
+        uses: s4u/setup-maven-action@1.12.0
 
       - name: Compile Java code
         run: mvn package
