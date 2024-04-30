@@ -1,0 +1,57 @@
+name: CI/CD para Aplicação Web
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 21
+          distribution: 'adopt'
+
+      - name: Install Maven
+        uses: actions/setup-maven@v3
+        with:
+          maven-version: '3.8.5'
+
+      - name: Compile Java code
+        run: mvn package
+
+      - name: Run unit tests
+        run: mvn test
+
+  deploy:
+    needs: build-and-test
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Prepare deployment
+        run: |
+          echo "Preparando implantação..."
+          mvn package -P production
+          cp target/*.war build-artifacts/
+
+      - name: Deploy to link
+        run: |
+          echo "Deploy para o servidor..."
+          # Terei de colocar o link aqui depois
+
+      - name: Health check
+        run: |
+          echo "Verificando saúde da aplicação..."
+          # Terei de colocar o link aqui depois
+
+      - name: Rollback if unhealthy
+        if: ${{ steps.health-check.outputs.status != 'healthy' }}
+        run: |
+          echo "Rollback executado!"
+          # Terei de colocar o link aqui depois
