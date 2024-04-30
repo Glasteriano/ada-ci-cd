@@ -38,9 +38,10 @@ jobs:
           mvn package -P production
           cp target/*.war build-artifacts/
 
-      - name: Deploy to link
+      - name: Deploy to server
+        if: ${{ env.DEPLOY_ENABLED == 'false' }}
         run: |
-          echo "Deploy para o servidor..."
+          echo "Realizando deploy para o servidor..."
           # Terei de colocar o link aqui depois
 
       - name: Health check
