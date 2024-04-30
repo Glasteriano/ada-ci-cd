@@ -32,10 +32,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Prepare deployment
-        run: |
-          echo "Preparando implantação..."
-          mvn clean
 
       - name: Deploy to server
         if: ${{ env.DEPLOY_ENABLED == 'false' }}
