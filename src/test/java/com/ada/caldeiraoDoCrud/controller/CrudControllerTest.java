@@ -72,7 +72,7 @@ class CrudControllerTest {
     @Test
     void findByIdSuccess() {
 
-        var entity = repository.findAll().getFirst();
+        var entity = repository.findAll().get(0);
         var id = entity.getId();
 
         var response = restTemplate.getForEntity(URL + "/{id}", CrudModel.class, id);
@@ -160,7 +160,7 @@ class CrudControllerTest {
     @Test
     void deleteSuccess() {
 
-        var id = repository.findAll().getFirst().getId();
+        var id = repository.findAll().get(0).getId();
 
         var response = restTemplate.exchange(URL + "/{id}",
                 HttpMethod.DELETE, null, Void.class, id);
