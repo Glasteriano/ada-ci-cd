@@ -11,6 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Definir variável de ambiente MAVEN_OPTS
+        run: |
+          echo "MAVEN_OPTS=-Dmaven.project.basedir=https://github.com/Glasteriano/ada-ci-cd/blob/main/pom.xml" >> $GITHUB_ENV
+
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
@@ -36,7 +40,7 @@ jobs:
         run: |
           echo "Preparando implantação..."
           mvn clean
-          mvn package -P
+          mvn package -P production
           cp target/*.war build-artifacts/
 
       - name: Deploy to server
