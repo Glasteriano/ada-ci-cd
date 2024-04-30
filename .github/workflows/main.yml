@@ -35,6 +35,7 @@ jobs:
       - name: Prepare deployment
         run: |
           echo "Preparando implantação..."
+          mvn clean
           mvn package -P production
           cp target/*.war build-artifacts/
 
