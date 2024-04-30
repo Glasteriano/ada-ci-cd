@@ -13,7 +13,8 @@ jobs:
 
       - name: Definir variável de ambiente MAVEN_OPTS
         run: |
-          echo "MAVEN_OPTS=-Dmaven.project.basedir=https://github.com/Glasteriano/ada-ci-cd/blob/main/pom.xml" >> $GITHUB_ENV
+          pwd
+          echo "MAVEN_OPTS=-Dmaven.project.basedir=pom.xml" >> $GITHUB_ENV
 
       - name: Setup Java
         uses: actions/setup-java@v3
